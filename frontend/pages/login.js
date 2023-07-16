@@ -23,17 +23,7 @@ const login = () => {
       })
       .then((data) => {
         if (data.message === "Login Sucessful") {
-          fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "GetSession", {
-            method: "GET",
-            credentials: "include",
-          })
-            .then((Response) => {
-              return Response.json();
-            })
-            .then((data) => {
-              console.log(data);
-            });
-          Router.push("/register");
+          Router.push("/");
         } else {
           console.log(data.message);
         }

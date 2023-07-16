@@ -1,4 +1,3 @@
-const { Timestamp } = require("mongodb");
 const mongoose = require("mongoose");
 
 // USER SCHEMA
@@ -14,21 +13,27 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
 const USER = mongoose.model("userSchema", userSchema);
 
-const shoppingSessionSchema = new mongoose.Schema(
-  {
-    id: Number,
-    user_id: Number,
-    total: Number,
-  },
-  {
-    timestamps: true,
-  }
-);
+const productSchema = new mongoose.Schema({
+  product_id: Number,
+  title: String,
+  price_old: Number,
+  price_new: Number,
+  rating: Number,
+  product_details: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "productDetails" },
+  ],
+});
 
+const productDetailsSchema = new mongoose.Schema({});
+
+const productDetails = mongoose.model(
+  "productDetailsSchema",
+  productDetailsSchema
+);
+const PRODUCT = mongoose.model("productSchema", productSchema);
 module.exports = {
   USER,
-  shoppingSessionSchema,
+  PRODUCT,
 };

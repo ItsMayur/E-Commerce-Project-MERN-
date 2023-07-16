@@ -1,58 +1,18 @@
 const express = require("express");
+const { PRODUCT } = require("../models");
 const Router = express.Router();
-const testData = [
-  {
-    productTitle: "Product 1",
-    productNewPrice: "13121",
-    productOldPrice: "321314",
-    productTag: "#goodNew",
-    productImg: "this is a img",
-    productId: "343324",
-  },
-  {
-    productTitle: "Product 1",
-    productNewPrice: "13121",
-    productOldPrice: "321314",
-    productTag: "#goodNew",
-    productImg: "this is a img",
-    productId: "16456234",
-  },
-  {
-    productTitle: "Product 1",
-    productNewPrice: "13121",
-    productOldPrice: "321314",
-    productTag: "#goodNew",
-    productImg: "this is a img",
-    productId: "54745",
-  },
-  {
-    productTitle: "Product 1",
-    productNewPrice: "13121",
-    productOldPrice: "321314",
-    productTag: "#goodNew",
-    productImg: "this is a img",
-    productId: "354366",
-  },
-  {
-    productTitle: "Product 1",
-    productNewPrice: "13121",
-    productOldPrice: "321314",
-    productTag: "#goodNew",
-    productImg: "this is a img",
-    productId: "0988324",
-  },
-  {
-    productTitle: "Product 1",
-    productNewPrice: "13121",
-    productOldPrice: "321314",
-    productTag: "#goodNew",
-    productImg: "this is a img",
-    productId: "030475",
-  },
-];
+
 Router.post("/ProductDetails", (req, res) => {
-  // MATCH PRODUCT ID AND THEN RETURN PRODUCT DATA
-  res.json(testData[0]);
+  PRODUCT.exists({ product_id: req.body.product_id }).then((response) => {
+    if (Boolean(response)) {
+      PRODUCT.findOne({ product_id: req.body.product_id }).then((data) => {
+        // console.log(data);
+        res.send(data).status(200);
+      });
+    } else {
+      res.send({ message: "PRODUCT NOT FOUND" });
+    }
+  });
 });
 
 module.exports = Router;

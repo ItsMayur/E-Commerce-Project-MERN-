@@ -1,7 +1,7 @@
 import { Sidebar } from "@/pages/components/Sidebar";
 import React from "react";
-import img from "./img.jpg";
-import { ProductMini } from "./components/ProductMini";
+import img from "./../img.jpg";
+import { ProductMini } from "./ProductMini";
 
 const Home = () => {
   const testData = [

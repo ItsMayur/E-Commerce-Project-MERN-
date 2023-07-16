@@ -1,7 +1,7 @@
 // EXPRESS SETUP
 const express = require("express");
 const app = express();
-const { USER, shoppingSessionSchema } = require("./models");
+const { USER, PRODUCT } = require("./models");
 const mongoose = require("mongoose");
 const sessions = require("express-session");
 const cors = require("cors");
@@ -10,9 +10,9 @@ const cors = require("cors");
 const PORT = 5000;
 
 // FUNCTIONS
-const createNewUser = (userData) => {
-  let addUser = new USER(userData);
-  addUser
+const createProduct = (data) => {
+  let addProduct = new PRODUCT(data);
+  addProduct
     .save()
     .then((doc) => {
       console.log(doc);
@@ -22,20 +22,18 @@ const createNewUser = (userData) => {
     });
 };
 
-// createNewUser({
-//   user_id: 141142312,
-//   first_name: "String",
-//   last_name: "String",
-//   email: "its.mayur718@gmail.com",
-//   password: "String",
-//   address: "String",
-//   number: 90188312,
+// createProduct({
+//   product_id: 123456,
+//   title: "big tv",
+//   price_old: 2133,
+//   price_new: 111,
+//   rating: 2.0,
 // });
 
 // ROUTES ADDRESS HERE
-const GetSession = require("./routes/GetSession");
 const LoginUser = require("./routes/LoginUser");
 const CreateUser = require("./routes/CreateUser");
+const isLogIn = require("./routes/isLogIn");
 const AddToBasket = require("./routes/AddToBasket");
 const BuyNow = require("./routes/BuyNow");
 const ProductDetails = require("./routes/ProductDetails");
@@ -68,12 +66,12 @@ app.use(
 );
 
 // ROUTES
-app.use(GetSession);
 app.use(LoginUser);
 app.use(BuyNow);
 app.use(AddToBasket);
 app.use(ProductDetails);
 app.use(CreateUser);
+app.use(isLogIn);
 
 // SERVER SETUP
 app.listen(PORT, () => {
