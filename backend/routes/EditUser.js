@@ -1,18 +1,18 @@
 const express = require("express");
-const { USER, BASKETITEM } = require("../models");
+const { USER } = require("../models");
 const Router = express.Router();
 
-Router.get("/GetBasket", (req, res) => {
+Router.post("/EditUser", (req, res) => {
   // CHECKING IS SESSION ID OF USER EXIST IN MONGOOSE DB
   USER.exists({ user_id: req.session.sessionID }).then((response) => {
-    // IF SESSION EXISTS
+    // IF SESSION EXIST
     if (Boolean(response)) {
-      // FETCHING BASKET ITEAMS FROM DATABASE
-      BASKETITEM.find({ user_id: req.session.sessionID }).then((data) => {
-        res.json(data).status(200);
+      // UPDATE USER DATA
+      USER.updateOne(req.body).then((result) => {
+        res.json(result).status(200);
       });
     }
-    // IF SESSION DOESN'T EXISTS
+    // IF SESSION DOESN'T EXIST
     else {
       res.send({ message: "USER NOT EXIST" }).status(400);
     }

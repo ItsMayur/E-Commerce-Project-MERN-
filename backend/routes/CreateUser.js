@@ -17,11 +17,11 @@ Router.post("/CreateUser", (req, res) => {
           req.session.sessionID = user_id;
         })
         // SENDING USER CREATED TO FRONTEND SO CAN LOGIN
-        .then(res.json({ message: "USER CREATED" }));
+        .then(res.json({ message: "USER CREATED" }).status(200));
     }
     // IF EMAIL EXIST THEN SEND USER ALREADY EXIST TO FRONTEND
     else {
-      res.json({ message: "USER ALREADY EXIST" });
+      res.json({ message: "USER ALREADY EXIST" }).status(409);
     }
   });
 });

@@ -37,6 +37,8 @@ const isLogIn = require("./routes/isLogIn");
 const AddToBasket = require("./routes/AddToBasket");
 const GetBasket = require("./routes/GetBasket");
 const BuyNow = require("./routes/BuyNow");
+const EditUser = require("./routes/EditUser");
+const UserDetails = require("./routes/UserDetails");
 const ProductDetails = require("./routes/ProductDetails");
 
 app.use(express.json());
@@ -74,6 +76,8 @@ app.use(ProductDetails);
 app.use(CreateUser);
 app.use(GetBasket);
 app.use(isLogIn);
+app.use(UserDetails);
+app.use(EditUser);
 
 // SERVER SETUP
 app.listen(PORT, () => {

@@ -16,7 +16,7 @@ Router.post("/ProductDetails", (req, res) => {
     // IF PRODUCT DOESN'T EXIST
     else {
       // SENDING PRODUCT NOT FOUND MESSAGE TO FRONTEND
-      res.send({ message: "PRODUCT NOT FOUND" });
+      res.send({ message: "PRODUCT NOT FOUND" }).status(404);
     }
   });
 });

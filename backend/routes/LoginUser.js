@@ -13,17 +13,17 @@ Router.post("/LoginUser", (req, res) => {
           req.session.isAuth = true;
           // ASSIGNING SESSION ID FROM EXISTING SESSION ID IN MONGOOSE DB AND SIGNING IN
           req.session.sessionID = response.user_id;
-          res.json({ message: "Login Sucessful" });
+          res.json({ message: "Login Sucessful" }).status(200);
         }
         // IF PASSWORD NOT MATCHED
         else {
-          res.json({ message: "Invalid User" });
+          res.json({ message: "Invalid User" }).status(400);
         }
       });
     }
     // IF EMAIL DOESN'T EXIST
     else {
-      res.json({ message: "Invalid User" });
+      res.json({ message: "Invalid User" }).status(400);
     }
   });
 });
