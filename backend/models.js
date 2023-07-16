@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// USER SCHEMA
+// CREATING USER SCHEMA FOR REGISTERING NEW USER
 const userSchema = new mongoose.Schema(
   {
     user_id: Number,
@@ -10,11 +10,23 @@ const userSchema = new mongoose.Schema(
     password: String,
     address: String,
     number: Number,
+    // CART
+    // DELIVERY HISTORY
   },
   { timestamps: true }
 );
-const USER = mongoose.model("userSchema", userSchema);
 
+// CREATING BASKET SCHEMA FOR USERS
+const basketItemSchema = new mongoose.Schema(
+  {
+    user_id: Number,
+    product_id: Number,
+    quantity: Number,
+  },
+  { timestamps: true }
+);
+
+// CREATING PRODUCT SCHEMA FOR CREATING NEW PRODUCT
 const productSchema = new mongoose.Schema({
   product_id: Number,
   title: String,
@@ -26,14 +38,20 @@ const productSchema = new mongoose.Schema({
   ],
 });
 
-const productDetailsSchema = new mongoose.Schema({});
+// const productDetails = mongoose.model(
+//   "productDetailsSchema",
+//   productDetailsSchema
+// );
 
-const productDetails = mongoose.model(
-  "productDetailsSchema",
-  productDetailsSchema
-);
+// CREATING MODELS OUT OF SCHEMAS
+// const productDetailsSchema = new mongoose.Schema({});
+const USER = mongoose.model("userSchema", userSchema);
 const PRODUCT = mongoose.model("productSchema", productSchema);
+const BASKETITEM = mongoose.model("basketItemSchema", basketItemSchema);
+
+// EXPORTING MODELS FOR FURTHER USE IN BACKEND
 module.exports = {
   USER,
   PRODUCT,
+  BASKETITEM,
 };

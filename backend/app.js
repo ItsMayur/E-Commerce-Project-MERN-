@@ -9,7 +9,7 @@ const cors = require("cors");
 // PORT TO RUN SERVER
 const PORT = 5000;
 
-// FUNCTIONS
+// FUNCTIONS TO CHECK BACKEND (PRODUCTION ONLY)
 const createProduct = (data) => {
   let addProduct = new PRODUCT(data);
   addProduct
@@ -35,6 +35,7 @@ const LoginUser = require("./routes/LoginUser");
 const CreateUser = require("./routes/CreateUser");
 const isLogIn = require("./routes/isLogIn");
 const AddToBasket = require("./routes/AddToBasket");
+const GetBasket = require("./routes/GetBasket");
 const BuyNow = require("./routes/BuyNow");
 const ProductDetails = require("./routes/ProductDetails");
 
@@ -71,6 +72,7 @@ app.use(BuyNow);
 app.use(AddToBasket);
 app.use(ProductDetails);
 app.use(CreateUser);
+app.use(GetBasket);
 app.use(isLogIn);
 
 // SERVER SETUP
