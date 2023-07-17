@@ -12,6 +12,7 @@ Router.post("/AddToBasket", (req, res) => {
         // IF PRODUCT EXISTS
         if (Boolean(response2)) {
           // ADD PRODUCT TO BASKET
+          // <----TO CHECK IS ALL THE PRODUCT DETAILS REQUIRE ARE MENTIONED---->
           const basketItem = {
             user_id: req.session.sessionID,
             product_id: req.body.product_id,

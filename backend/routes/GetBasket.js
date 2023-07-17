@@ -15,6 +15,7 @@ Router.get("/GetBasket", (req, res) => {
         }
         // IF HAS SOME ITEMS IN BASKET
         else {
+          // <----TO SEND JUST THAT DATA WHICH IS NEEDED SO INFORMATION DON'T LEAK---->
           res.send(data).status(200);
         }
       });

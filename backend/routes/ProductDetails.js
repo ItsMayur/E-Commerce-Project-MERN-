@@ -10,6 +10,7 @@ Router.post("/ProductDetails", (req, res) => {
       // FETCH PRODUCT DATA FROM MONGOOSE DB
       PRODUCT.findOne({ product_id: req.body.product_id }).then((data) => {
         // SENDING PRODUCT DATA TO FRONTEND
+        // <----TO SEND JUST THAT DATA WHICH IS NEEDED SO INFORMATION DON'T LEAK---->
         res.send(data).status(200);
       });
     }

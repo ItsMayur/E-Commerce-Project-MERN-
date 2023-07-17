@@ -9,6 +9,7 @@ Router.get("/UserDetails", (req, res) => {
     if (Boolean(response)) {
       // FETCHING USER DETIALS
       USER.find({ user_id: req.session.sessionID }).then((data) => {
+        // <----TO SEND JUST THAT DATA WHICH IS NEEDED SO INFORMATION DON'T LEAK---->
         res.json(data);
       });
     } else {

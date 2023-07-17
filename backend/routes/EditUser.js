@@ -8,6 +8,7 @@ Router.post("/EditUser", (req, res) => {
     // IF SESSION EXIST
     if (Boolean(response)) {
       // UPDATE USER DATA
+      // <----TO SEE IS DATA COMMING FROM USER HAS PASSWORD FEILD---->
       USER.updateOne(req.body).then((result) => {
         res.json(result).status(200);
       });

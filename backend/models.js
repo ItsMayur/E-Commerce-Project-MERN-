@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 // CREATING USER SCHEMA FOR REGISTERING NEW USER
+// <----TO ADD REQUIRED OR NOT TO EACH SCHEMA TO AVOID ANY CLASHES IN MISSING FEILDS---->
 const userSchema = new mongoose.Schema(
   {
     user_id: Number,
