@@ -1,64 +1,33 @@
 import { Sidebar } from "@/pages/components/Sidebar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img from "./../img.jpg";
 import { ProductMini } from "./ProductMini";
+import Link from "next/link";
 
 const Home = () => {
-  const testData = [
-    {
-      productTitle: "Product 1",
-      productNewPrice: "13121",
-      productOldPrice: "321314",
-      productTag: "#goodNew",
-      productImg: "this is a img",
-      productId: "343324",
-    },
-    {
-      productTitle: "Product 1",
-      productNewPrice: "13121",
-      productOldPrice: "321314",
-      productTag: "#goodNew",
-      productImg: "this is a img",
-      productId: "16456234",
-    },
-    {
-      productTitle: "Product 1",
-      productNewPrice: "13121",
-      productOldPrice: "321314",
-      productTag: "#goodNew",
-      productImg: "this is a img",
-      productId: "54745",
-    },
-    {
-      productTitle: "Product 1",
-      productNewPrice: "13121",
-      productOldPrice: "321314",
-      productTag: "#goodNew",
-      productImg: "this is a img",
-      productId: "354366",
-    },
-    {
-      productTitle: "Product 1",
-      productNewPrice: "13121",
-      productOldPrice: "321314",
-      productTag: "#goodNew",
-      productImg: "this is a img",
-      productId: "0988324",
-    },
-    {
-      productTitle: "Product 1",
-      productNewPrice: "13121",
-      productOldPrice: "321314",
-      productTag: "#goodNew",
-      productImg: "this is a img",
-      productId: "030475",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  async function getProducts() {
+    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "getProducts", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+      });
+  }
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   return (
     <div className="flex">
       <Sidebar />
-
       <div>
         <div>
           <ul className="flex place-content-between">
@@ -72,23 +41,26 @@ const Home = () => {
               <a href="">Bell</a>
             </li>
             <li>
-              <a href="">Cart</a>
+              <Link href={"/components/Basket"}>Cart</Link>
             </li>
             <div>
-              <img className="h-10 w-10 rounded" src={img} alt="i" />
+              <Link href={"/components/About"}>
+                {" "}
+                <img className="h-10 w-10 rounded" src={img} alt="i" />
+              </Link>
             </div>
           </ul>
         </div>
         <div className="flex place-content-center flex-wrap">
-          {testData.map((item, idx) => (
+          {products.map((item, idx) => (
             <div className="m-6">
               <ProductMini
-                productTitle={item.productTitle}
-                productNewPrice={item.productNewPrice}
-                productOldPrice={item.productOldPrice}
+                productTitle={item.title}
+                productNewPrice={item.price_new}
+                productOldPrice={item.price_old}
                 productTag={item.productTag}
-                productImg={item.productImg}
-                productId={item.productId}
+                productImg={item.produce_img}
+                productId={item.product_id}
               />
             </div>
           ))}

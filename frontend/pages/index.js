@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Home from "./components/Home";
 import Signup from "./Signup";
+import { Sidebar } from "./components/Sidebar";
 
 const index = () => {
   const [boolIsLogIn, setIsLogIn] = useState(null);
@@ -21,7 +22,11 @@ const index = () => {
   };
   isLogIn();
   if (boolIsLogIn) {
-    return <Home />;
+    return (
+      <>
+        <Home />
+      </>
+    );
   } else {
     return <Signup />;
   }

@@ -2,7 +2,6 @@ import React from "react";
 
 export const Sidebar = () => {
   const handleShowDiscovery = () => {
-    console.log(document.getElementById("DiscoveryItems").style.display);
     if (document.getElementById("DiscoveryItems").style.display == "") {
       document.getElementById("DiscoveryItems").style.display = "block";
     } else if (

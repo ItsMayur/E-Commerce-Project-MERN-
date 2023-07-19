@@ -22,14 +22,6 @@ const createProduct = (data) => {
     });
 };
 
-// createProduct({
-//   product_id: 123456,
-//   title: "big tv",
-//   price_old: 2133,
-//   price_new: 111,
-//   rating: 2.0,
-// });
-
 // ROUTES ADDRESS HERE
 const LoginUser = require("./routes/LoginUser");
 const CreateUser = require("./routes/CreateUser");
@@ -40,6 +32,8 @@ const BuyNow = require("./routes/BuyNow");
 const EditUser = require("./routes/EditUser");
 const UserDetails = require("./routes/UserDetails");
 const ProductDetails = require("./routes/ProductDetails");
+const createProducts = require("./routes/createProducts");
+const getProducts = require("./routes/getProducts");
 
 app.use(express.json());
 //MONGODB CONNECT
@@ -73,11 +67,13 @@ app.use(LoginUser);
 app.use(BuyNow);
 app.use(AddToBasket);
 app.use(ProductDetails);
+app.use(createProducts);
 app.use(CreateUser);
 app.use(GetBasket);
 app.use(isLogIn);
 app.use(UserDetails);
 app.use(EditUser);
+app.use(getProducts);
 
 // SERVER SETUP
 app.listen(PORT, () => {
