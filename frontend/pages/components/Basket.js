@@ -3,7 +3,7 @@ import CartItem from "./cart-item/CartItem";
 
 const Basket = () => {
   const [cartItems, setCartItems] = useState([]);
-
+  const [cartItemHeading, setCartItemHeading] = useState(null);
   async function getBasketItems() {
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "GetBasket", {
       method: "GET",
@@ -16,7 +16,12 @@ const Basket = () => {
         return res.json();
       })
       .then((data) => {
-        setCartItems(data);
+        if (data.message == "NO ITEMS IN CART") {
+          setCartItemHeading(`YOUR CART HAS NO ITEMS`);
+        } else {
+          setCartItems(data);
+          setCartItemHeading(`YOUR CART HAS ${data.length} ITEMS`);
+        }
       });
   }
   useEffect(() => {
@@ -24,6 +29,7 @@ const Basket = () => {
   }, []);
   return (
     <div>
+      <h1>{cartItemHeading}</h1>
       {cartItems.map((item, key) => {
         return (
           <CartItem

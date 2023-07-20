@@ -1,11 +1,14 @@
 import { data } from "autoprefixer";
+import { useRouter } from "next/router";
 import React from "react";
 
 const register = () => {
+  const Router = useRouter();
   async function RegisterUser(event) {
     event.preventDefault();
     const newUserData = {
-      name: event.target.name.value,
+      first_name: event.target.fname.value,
+      last_name: event.target.lname.value,
       email: event.target.email.value,
       number: event.target.number.value,
       password: event.target.password.value,
@@ -22,15 +25,23 @@ const register = () => {
         return Response.json();
       })
       .then((data) => {
-        console.log(data);
+        if (data.message == "USER CREATED") {
+          console.log("USER CREATED");
+          Router.push("/login");
+        } else {
+          console.log("PLEASE TRY AGAIN");
+        }
       });
+    navigator;
   }
 
   return (
     <div>
       <form onSubmit={RegisterUser}>
-        <label>Name</label>
-        <input type="text" name="name" />
+        <label>First Name</label>
+        <input type="text" name="fname" />
+        <label>Last Name</label>
+        <input type="text" name="lname" />
         <label>Email</label>
         <input type="email" name="email" />
         <label>Number</label>

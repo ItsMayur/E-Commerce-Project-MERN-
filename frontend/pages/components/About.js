@@ -1,9 +1,11 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import React from "react";
 
 const About = () => {
   const [userInfo, setUserInfo] = useState({
-    name: null,
+    first_name: null,
+    last_name: null,
     email: null,
     number: null,
     address: null,
@@ -28,9 +30,16 @@ const About = () => {
   }, []);
   return (
     <div>
-      <div>{userInfo.name || "NO NAME"}</div>
+      <div>{userInfo.first_name || "NO NAME"}</div>
+      <div>{userInfo.last_name || "NO NAME"}</div>
       <div>{userInfo.email || "NO EMAIL"}</div>
-      {userInfo.address || "NO ADDRESS"}
+      <div> {userInfo.address || "NO ADDRESS"}</div>
+      <div>
+        <Link href="/components/edit-account/EditInfo">EDIT INFO</Link>
+        <Link href="/components/edit-account/ChangePassword">
+          CHANGE PASSWORD
+        </Link>
+      </div>
     </div>
   );
 };

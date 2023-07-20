@@ -34,6 +34,7 @@ const UserDetails = require("./routes/UserDetails");
 const ProductDetails = require("./routes/ProductDetails");
 const createProducts = require("./routes/createProducts");
 const getProducts = require("./routes/getProducts");
+const ChangePassword = require("./routes/ChangePassword");
 
 app.use(express.json());
 //MONGODB CONNECT
@@ -74,6 +75,7 @@ app.use(isLogIn);
 app.use(UserDetails);
 app.use(EditUser);
 app.use(getProducts);
+app.use(ChangePassword);
 
 // SERVER SETUP
 app.listen(PORT, () => {

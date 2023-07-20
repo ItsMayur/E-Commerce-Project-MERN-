@@ -10,6 +10,7 @@ Router.post("/CreateUser", (req, res) => {
       const user_id = Math.random() * 100000;
       const newUser = req.body;
       newUser.user_id = user_id;
+      newUser.user_type = "BUYER";
       // <----TO CHECK IS USER FILLED ALL REQUIRED VALUES OR NOT---->
       USER.create(req.body)
         .then(() => {
