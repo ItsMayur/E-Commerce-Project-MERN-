@@ -1,15 +1,23 @@
-import { Sidebar } from "@/pages/components/Sidebar";
 import React, { useEffect, useState } from "react";
 import img from "./../img.jpg";
-import { ProductMini } from "./ProductMini";
+import ProductMini from "./Products/ProductMini";
 import Link from "next/link";
+import Sidebar from "../components/Sidebar";
 
-const Home = () => {
+const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [productSearch, setProductSearch] = useState("");
+  async function handleProductFind(event) {
+    event.preventDefault();
+    await setProductSearch(event.target.searchProduct.value);
+    getProducts();
+  }
+
   async function getProducts() {
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "getProducts", {
-      method: "GET",
+      method: "POST",
       credentials: "include",
+      body: JSON.stringify({ searchProduct: productSearch }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -18,7 +26,9 @@ const Home = () => {
         return res.json();
       })
       .then((data) => {
-        setProducts(data);
+        if (data.length) {
+          setProducts(data);
+        }
       });
   }
   useEffect(() => {
@@ -32,19 +42,19 @@ const Home = () => {
         <div>
           <ul className="flex place-content-between">
             <li>
-              <input type="search" name="" id="" />
-            </li>
-            <li>
-              <a>Dark</a>
+              <form onSubmit={handleProductFind}>
+                <input type="search" name="searchProduct" id="" />
+                <input type="submit" />
+              </form>
             </li>
             <li>
               <a href="">Bell</a>
             </li>
             <li>
-              <Link href={"/components/Basket"}>Cart</Link>
+              <Link href={"/Shopping/Basket"}>Cart</Link>
             </li>
             <div>
-              <Link href={"/components/About"}>
+              <Link href={"/User/About"}>
                 {" "}
                 <img className="h-10 w-10 rounded" src={img} alt="i" />
               </Link>
@@ -70,4 +80,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Shop;

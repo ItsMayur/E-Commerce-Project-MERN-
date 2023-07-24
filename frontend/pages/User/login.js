@@ -23,7 +23,7 @@ const login = () => {
       })
       .then((data) => {
         if (data.message === "Login Sucessful") {
-          Router.push("/");
+          Router.push("/../Shopping/Shop");
         } else {
           console.log(data.message);
         }

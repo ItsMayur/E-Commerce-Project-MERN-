@@ -35,10 +35,8 @@ const About = () => {
       <div>{userInfo.email || "NO EMAIL"}</div>
       <div> {userInfo.address || "NO ADDRESS"}</div>
       <div>
-        <Link href="/components/edit-account/EditInfo">EDIT INFO</Link>
-        <Link href="/components/edit-account/ChangePassword">
-          CHANGE PASSWORD
-        </Link>
+        <Link href="/User/EditInfo">EDIT INFO</Link>
+        <Link href="/User/ChangePassword">CHANGE PASSWORD</Link>
       </div>
     </div>
   );

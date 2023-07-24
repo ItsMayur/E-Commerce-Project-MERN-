@@ -1,5 +1,5 @@
 const express = require("express");
-const { USER, PRODUCT, BASKETITEM } = require("../models");
+const { USER, PRODUCT, BASKETITEM } = require("../../models");
 const Router = express.Router();
 
 async function updateCartItem(data, toUpdate) {

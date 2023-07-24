@@ -3,8 +3,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 First
-1> Goto frontend folder in terminal
-command : cd frontend
+1> Goto frontend folder in terminal and install dependencies
+
+```
+cd frontend
+npm install
+```
+
 2>Run development by :
 
     ```bash
@@ -15,8 +20,12 @@ command : cd frontend
     pnpm dev
     ```
 
-3> Goto backend folder in terminal
-command : cd backend
+3> Goto backend folder in terminal and install dependencies
+
+```
+cd backend
+npm install
+```
 
 4>Run backend server by :
 node app

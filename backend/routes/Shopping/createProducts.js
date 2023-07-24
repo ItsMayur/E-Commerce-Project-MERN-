@@ -1,6 +1,6 @@
 const express = require("express");
 const Router = express.Router();
-const { PRODUCT } = require("./../models");
+const { PRODUCT } = require("../../models");
 
 Router.post("/createProducts", (req, res) => {
   // CHECKING IS EMAIL EXIST IN MONGOOSE DB OR NOT

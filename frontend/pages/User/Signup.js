@@ -1,4 +1,4 @@
-import { data } from "autoprefixer";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -27,12 +27,11 @@ const register = () => {
       .then((data) => {
         if (data.message == "USER CREATED") {
           console.log("USER CREATED");
-          Router.push("/login");
+          Router.push("/../Shopping/Shop");
         } else {
-          console.log("PLEASE TRY AGAIN");
+          console.log(data.message);
         }
       });
-    navigator;
   }
 
   return (
@@ -50,6 +49,7 @@ const register = () => {
         <input type="password" name="password" />
         <button type="submit">Register</button>
       </form>
+      <Link href="/User/login">Login</Link>
     </div>
   );
 };

@@ -2,12 +2,13 @@
 const express = require("express");
 const app = express();
 const { USER, PRODUCT } = require("./models");
+const Razorpay = require("razorpay");
 const mongoose = require("mongoose");
 const sessions = require("express-session");
 const cors = require("cors");
 
 // PORT TO RUN SERVER
-const PORT = 5000;
+const PORT = 5001;
 
 // FUNCTIONS TO CHECK BACKEND (PRODUCTION ONLY)
 const createProduct = (data) => {
@@ -23,18 +24,18 @@ const createProduct = (data) => {
 };
 
 // ROUTES ADDRESS HERE
-const LoginUser = require("./routes/LoginUser");
-const CreateUser = require("./routes/CreateUser");
+const LoginUser = require("./routes/User/LoginUser");
+const CreateUser = require("./routes/User/CreateUser");
 const isLogIn = require("./routes/isLogIn");
-const AddToBasket = require("./routes/AddToBasket");
-const GetBasket = require("./routes/GetBasket");
-const BuyNow = require("./routes/BuyNow");
-const EditUser = require("./routes/EditUser");
-const UserDetails = require("./routes/UserDetails");
-const ProductDetails = require("./routes/ProductDetails");
-const createProducts = require("./routes/createProducts");
-const getProducts = require("./routes/getProducts");
-const ChangePassword = require("./routes/ChangePassword");
+const AddToBasket = require("./routes/Shopping/AddToBasket");
+const GetBasket = require("./routes/Shopping/GetBasket");
+const BuyNow = require("./routes/Shopping/BuyNow");
+const EditUser = require("./routes/User/EditUser");
+const UserDetails = require("./routes/User/UserDetails");
+const ProductDetails = require("./routes/Shopping/ProductDetails");
+const createProducts = require("./routes/Shopping/createProducts");
+const getProducts = require("./routes/Shopping/getProducts");
+const ChangePassword = require("./routes/User/ChangePassword");
 
 app.use(express.json());
 //MONGODB CONNECT
@@ -49,6 +50,12 @@ const connectDB = async () => {
   }
 };
 connectDB();
+
+// RAZORPAY KEY AND SECRET
+var instance = new Razorpay({
+  key_id: "YOUR_KEY_ID",
+  key_secret: "YOUR_KEY_SECRET",
+});
 
 // CORS
 app.use(cors({ credentials: true, origin: true }));
@@ -81,3 +88,4 @@ app.use(ChangePassword);
 app.listen(PORT, () => {
   console.log("BACKEND => " + PORT);
 });
+module.exports = { instance };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Home from "./components/Home";
-import Signup from "./Signup";
-import { Sidebar } from "./components/Sidebar";
+import Signup from "./User/Signup";
+import Community from "./Community/Community";
+import AddArt from "./Community/AddArt";
 
 const index = () => {
   const [boolIsLogIn, setIsLogIn] = useState(null);
@@ -24,7 +24,9 @@ const index = () => {
   if (boolIsLogIn) {
     return (
       <>
-        <Home />
+        {/* <Community /> */}
+        <AddArt />
+        {/* <Shopping /> */}
       </>
     );
   } else {

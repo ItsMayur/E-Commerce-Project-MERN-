@@ -2,10 +2,13 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function Page(slug) {
+  // ROUTER SETUP
   const Router = useRouter();
+  // CONSTANTS USED
   const [productData, setProductData] = useState("");
   const { productID } = Router.query;
   const [quantity, setQuantity] = useState(1);
+  // FUNCTION TO ADD TO CART
   async function handleAddToCart() {
     if (Boolean(productID)) {
       await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "AddToBasket", {
@@ -24,6 +27,7 @@ export default function Page(slug) {
         });
     }
   }
+  // FUNCTIONS TO CHANGE ITEM QUANTITY
   const handleIncreaseQuantity = () => {
     const increasedQuantity = quantity + 1;
     setQuantity(increasedQuantity);
@@ -34,6 +38,7 @@ export default function Page(slug) {
       setQuantity(decreaseQuantity);
     }
   };
+  // FUNCTION TO GET PRODUCT DETIALS ON LOAD
   async function getProductDetails(productID) {
     if (Boolean(productID)) {
       await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "ProductDetails", {
@@ -57,6 +62,29 @@ export default function Page(slug) {
   useEffect(() => {
     getProductDetails(productID);
   }, [productID]);
+
+  // PAYMENT GATEWAY INTEGRATION
+  var orderId;
+  $(document).ready(function () {
+    var settings = {
+      url: "/create/orderId",
+      method: "POST",
+      timeout: 0,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify({
+        amount: "50000",
+      }),
+    };
+
+    //creates new orderId everytime
+    $.ajax(settings).done(function (response) {
+      orderId = response.orderId;
+      console.log(orderId);
+      $("button").show();
+    });
+  });
   return (
     <div>
       <img src={productData.productImg} alt={productData.productImg} />

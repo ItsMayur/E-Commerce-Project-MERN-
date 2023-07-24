@@ -33,7 +33,7 @@ const EditInfo = () => {
       <div>
         <form onSubmit={handleEditUserPassword}>
           <label>Old Password</label>
-          <input type="text" name="password" />
+          <input type="password" name="password" />
           <label>New Password</label>
           <input type="password" name="new_password" />
           <label>Reenter new password</label>

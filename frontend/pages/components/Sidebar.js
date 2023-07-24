@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Sidebar = () => {
+const Sidebar = () => {
   const handleShowDiscovery = () => {
     if (document.getElementById("DiscoveryItems").style.display == "") {
       document.getElementById("DiscoveryItems").style.display = "block";
@@ -76,3 +76,5 @@ export const Sidebar = () => {
     </div>
   );
 };
+
+export default Sidebar;

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 
-export const ProductMini = (props) => {
+const ProductMini = (props) => {
   const handleProductPage = () => {
     console.log("Go to product page " + props.productId);
   };
@@ -25,3 +25,4 @@ export const ProductMini = (props) => {
     </a>
   );
 };
+export default ProductMini;
