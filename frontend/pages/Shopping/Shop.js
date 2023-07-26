@@ -28,6 +28,7 @@ const Shop = () => {
       .then((data) => {
         if (data.length) {
           setProducts(data);
+          console.log(data);
         }
       });
   }

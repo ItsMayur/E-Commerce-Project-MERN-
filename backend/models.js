@@ -30,12 +30,13 @@ const basketItemSchema = new mongoose.Schema(
 
 // CREATING PRODUCT SCHEMA FOR CREATING NEW PRODUCT
 const productSchema = new mongoose.Schema({
-  product_img: { type: String },
-  product_id: { type: String, require: true },
-  title: { type: String, require: true },
+  product_img: { data: Buffer, contentType: String },
+  product_id: { type: String },
+  title: { type: String },
   price_old: Number,
-  price_new: { type: Number, require: true },
-  rating: { type: Number, require: true },
+  price_new: { type: Number },
+  rating: { type: Number },
+  user_id: { type: String },
   product_details: [
     { type: mongoose.Schema.Types.ObjectId, ref: "productDetails" },
   ],

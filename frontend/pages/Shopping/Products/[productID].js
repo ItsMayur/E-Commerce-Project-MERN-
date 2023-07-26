@@ -63,28 +63,6 @@ export default function Page(slug) {
     getProductDetails(productID);
   }, [productID]);
 
-  // PAYMENT GATEWAY INTEGRATION
-  var orderId;
-  $(document).ready(function () {
-    var settings = {
-      url: "/create/orderId",
-      method: "POST",
-      timeout: 0,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: JSON.stringify({
-        amount: "50000",
-      }),
-    };
-
-    //creates new orderId everytime
-    $.ajax(settings).done(function (response) {
-      orderId = response.orderId;
-      console.log(orderId);
-      $("button").show();
-    });
-  });
   return (
     <div>
       <img src={productData.productImg} alt={productData.productImg} />

@@ -5,6 +5,7 @@ const { USER, PRODUCT } = require("./models");
 const Razorpay = require("razorpay");
 const mongoose = require("mongoose");
 const sessions = require("express-session");
+
 const cors = require("cors");
 
 // PORT TO RUN SERVER
@@ -23,6 +24,7 @@ const createProduct = (data) => {
     });
 };
 
+app.use(express.static("product_img"));
 // ROUTES ADDRESS HERE
 const LoginUser = require("./routes/User/LoginUser");
 const CreateUser = require("./routes/User/CreateUser");
@@ -33,11 +35,14 @@ const BuyNow = require("./routes/Shopping/BuyNow");
 const EditUser = require("./routes/User/EditUser");
 const UserDetails = require("./routes/User/UserDetails");
 const ProductDetails = require("./routes/Shopping/ProductDetails");
-const createProducts = require("./routes/Shopping/createProducts");
+const createProducts = require("./routes/Seller/createProducts");
 const getProducts = require("./routes/Shopping/getProducts");
 const ChangePassword = require("./routes/User/ChangePassword");
+const deleteProduct = require("./routes/Seller/deleteProduct");
+const getAddedProducts = require("./routes/Seller/getAddedProducts");
 
 app.use(express.json());
+app.use("/product_img", express.static("product_img"));
 //MONGODB CONNECT
 const connectDB = async () => {
   try {
@@ -82,7 +87,9 @@ app.use(isLogIn);
 app.use(UserDetails);
 app.use(EditUser);
 app.use(getProducts);
+app.use(deleteProduct);
 app.use(ChangePassword);
+app.use(getAddedProducts);
 
 // SERVER SETUP
 app.listen(PORT, () => {

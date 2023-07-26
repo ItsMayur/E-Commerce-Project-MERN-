@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const ProductMini = (props) => {
   const handleProductPage = () => {
@@ -9,8 +9,9 @@ const ProductMini = (props) => {
     <a href={"Products/" + props.productId} className="place-content-center">
       <img
         className="h-40 w-40"
-        src={props.productImg}
-        alt={props.productImg}
+        src={
+          process.env.NEXT_PUBLIC_BACKEND_URL + "product_img/" + props.productId
+        }
       />
       <div>
         <p className="my-1">{props.productTitle}</p>

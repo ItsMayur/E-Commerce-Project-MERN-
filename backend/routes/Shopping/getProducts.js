@@ -8,7 +8,7 @@ Router.post("/getProducts", (req, res) => {
     // IF SESSION EXISTS
     if (Boolean(response)) {
       // FETCHING BASKET ITEAMS FROM DATABASE
-      if (req.searchProduct) {
+      if (req.body.searchProduct != "") {
         PRODUCT.find({ title: req.body.searchProduct }).then((data) => {
           // IF NO ITEMS IN BASKET
           if (data.length === 0) {
