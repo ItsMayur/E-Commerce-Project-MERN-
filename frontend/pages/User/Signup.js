@@ -35,21 +35,63 @@ const register = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={RegisterUser}>
-        <label>First Name</label>
-        <input type="text" name="fname" />
-        <label>Last Name</label>
-        <input type="text" name="lname" />
-        <label>Email</label>
-        <input type="email" name="email" />
-        <label>Number</label>
-        <input type="Number" name="number" />
-        <label>Password</label>
-        <input type="password" name="password" />
-        <button type="submit">Register</button>
-      </form>
-      <Link href="/User/login">Login</Link>
+    <div className="max-sm:flex max-sm:items-center max-sm:flex-col max-sm:text-center h-screen bg-black text-white">
+      <div className="max-sm:my-20">
+        <h1 className="max-sm:text-3xl">Company Name</h1>
+        <p>This is company headline.</p>
+      </div>
+      <div>
+        <form
+          onSubmit={RegisterUser}
+          className="max-sm:flex max-sm:w-96  max-sm:flex-col max-sm:text-sm"
+        >
+          <input
+            type="text"
+            name="fname"
+            placeholder="First name"
+            className="max-sm:h-10 rounded-xl my-2"
+          />
+          <input
+            type="text"
+            name="lname"
+            placeholder="Last name"
+            className="max-sm:h-10 rounded-xl my-2"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="max-sm:h-10 rounded-xl my-2"
+          />
+          <input
+            type="Number"
+            name="number"
+            placeholder="Number"
+            className="max-sm:h-10 rounded-xl my-2"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="max-sm:h-10 rounded-xl my-2"
+          />
+          <button
+            type="submit"
+            className="max-sm:h-10 rounded-xl text-white bg-green my-10"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+      <div className="max-sm:flex max-sm:text-sm">
+        <p className="mx-1">If you have an account? </p>
+        <Link
+          href="/User/login"
+          className="text-green text-decoration-line: underline"
+        >
+          Sign In here
+        </Link>
+      </div>
     </div>
   );
 };
